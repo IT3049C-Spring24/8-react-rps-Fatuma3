@@ -1,7 +1,14 @@
-import { useState } from "react";
+import {PropTypes} from 'prop-types';
 
 
-const WelcomeView = (props) => {
+const WelcomeView = (username,setUserName, setGameStart) => {
+
+  function onClickStartGame() {
+    console.log("Start Game button clicked");
+    console.log("Username: ", username);
+    setGameStart();
+
+
     return (
       <div id="welcome-screen">
         <form id="name-form">
@@ -14,6 +21,7 @@ const WelcomeView = (props) => {
             type="text"
             id="username"
             name="username"
+            value={username}
             required placeholder="Enter Name Here..." minLength="2"
             maxLength="15" />
           </div>
@@ -25,5 +33,5 @@ const WelcomeView = (props) => {
     );
   };
   
-  export default WelcomeView;
+  //export default WelcomeView;
   
