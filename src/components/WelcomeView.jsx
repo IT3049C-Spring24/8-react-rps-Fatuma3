@@ -1,12 +1,12 @@
 import {PropTypes} from 'prop-types';
 
 
-const WelcomeView = (username,setUserName, setGameStart) => {
+const WelcomeView = (userName,setUserName, onGameStart) => {
 
-  function onClickStartGame() {
-    console.log("Start Game button clicked");
-    console.log("Username: ", username);
-    setGameStart();
+  // function onClickStartGame() {
+  //   console.log("Start Game button clicked");
+  //   console.log("Username: ", username);
+  //   //setGameStart();
 
 
     return (
@@ -21,17 +21,16 @@ const WelcomeView = (username,setUserName, setGameStart) => {
             type="text"
             id="username"
             name="username"
-            value={username}
             required placeholder="Enter Name Here..." minLength="2"
             maxLength="15" />
           </div>
-          <button className="btn btn-primary" id="start-game-button" type="button">
+          <button className="btn btn-primary" id="start-game-button" type="button" >
             Start Game!
           </button>
         </form>
       </div>
     );
   };
-  
-  //export default WelcomeView;
+
+export default WelcomeView;
   

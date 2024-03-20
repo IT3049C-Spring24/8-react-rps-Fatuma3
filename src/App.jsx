@@ -6,21 +6,27 @@ import Button from './components/Button';
 
 
 function App() {
+
   const [userName, setUserName] = useState("");
-  const [gameStart, setGameStart] = useState(false);  
+  const [gameStarted, setGameStarted] = useState(false);  
+
+  console.log(gameStarted)
 
   return (
     <>
     <div className="container">
       <h1 className="mainHeader">Rock Paper Scissors</h1>
+      
+      
       <Button />
     </div>
 
     { 
-      gameStart
+      gameStarted
       ? <GameView userName={userName}/>
-      : <WelcomeView userName={userName} setUserName={setUserName} setGameStart={() => setGameStart(true)} />
+      : <WelcomeView userName={userName} setUserName={setUserName} onGameStart={() => setGameStarted(true)} /> // 
     }
+
     </>
   );
 }

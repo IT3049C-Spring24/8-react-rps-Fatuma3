@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import RockPaperScissors from "../models/RockPaperScissors";
-
+import RockPaperScissors from "../rock_paper_scissors";
 
 
 const GameView = ({userName}) => {
@@ -50,6 +49,7 @@ const GameView = ({userName}) => {
             className="custom-select"
             id="user-selection"
             name="user-selection"
+            value={selection}
 
           >
             <option id="rock" value="rock">
@@ -69,6 +69,7 @@ const GameView = ({userName}) => {
         <button class="btn btn-primary" id="reset-button" type="button" onClick={resetButtonClicked}>
           Reset
         </button>  
+        
       </form>
     </div>
   );
