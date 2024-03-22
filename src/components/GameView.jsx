@@ -2,43 +2,38 @@ import React, { useState } from "react";
 import RockPaperScissors from "../rock_paper_scissors";
 
 
-const GameView = ({userName}) => {
+const GameView = ({name}) => {
 
-  const [game, setGame] = useState(new RockPaperScissors(userName));
-  const [userScore, setUserScore] = useState(0);
-  const [cpuScore, setCpuScore] = useState(0);
+  const [game, setGame] = useState(new RockPaperScissors(name));
+  const [score, setScore] = useState({user: 0, cpu: 0}); 
   const [selection, setSelection] = useState("rock");
   const [history, setHistory] = useState([]);
 
   const udpateScoreandHistory = () => {
-    setUserScore(game.userScore);
-    setCpuScore(game.cpuScore);
-    setHistory(...game.gameHistoryLog);
+    setScore({...game.score});
+    setHistory([...game.gameHistoryLog]);
   }
 
   const gameButtonClick = () => {
     game.play(selection);
     udpateScoreandHistory();
+    setGame(game);
+    console.log("game button clicked")
+    console.log(score);
   }
 
   const resetButtonClicked = () => {
-
-    setCpuScore(0);
-    setUserScore(0);
-    setGame(new RockPaperScissors(userName));
+    setscore({user: 0, cpu: 0});
+    setGame(new RockPaperScissors(name));
     setHistory([]);
-
   }
-
-
-
 
 
 
   return (
     <div id="game-screen">
       <div id="score-tally">
-        <p id="score"> {UserName}: {userScore} v CPU:{cpuScore}</p>
+        <p id="score"> {name}: {score.user} v CPU:{score.cpu}</p>
       
       </div>
 
@@ -50,6 +45,7 @@ const GameView = ({userName}) => {
             id="user-selection"
             name="user-selection"
             value={selection}
+            onChange={(e) => setSelection(e.target.value)}
 
           >
             <option id="rock" value="rock">
@@ -63,13 +59,21 @@ const GameView = ({userName}) => {
             </option>
           </select>
         </div>
-        <button class="btn btn-primary" id="play-button" type="button" onClick={gameButtonClick}>
+        <button className="btn btn-primary" id="play-button" type="button" onClick={gameButtonClick}>
           Play
         </button>
-        <button class="btn btn-primary" id="reset-button" type="button" onClick={resetButtonClicked}>
+        <button className="btn btn-primary" id="reset-button" type="button" onClick={resetButtonClicked}>
           Reset
         </button>  
-        
+        <div id="game-history">
+          <ul>
+            {
+              history.map((item, index) => {
+                return <li key={index}>{item}</li>
+              })
+            }
+          </ul>
+        </div>
       </form>
     </div>
   );

@@ -1,30 +1,33 @@
-import {PropTypes} from 'prop-types';
+import PropTypes from "prop-types";
+import React from "react";
 
 
-const WelcomeView = (userName,setUserName, onGameStart) => {
+const WelcomeView = ({name,onNameChange, onGameStart}) => {
 
-  // function onClickStartGame() {
-  //   console.log("Start Game button clicked");
-  //   console.log("Username: ", username);
-  //   //setGameStart();
+function startButtonClick(){
+  onGameStart();
+  console.log("game button clicked");
+}
 
 
-    return (
+
+return (
       <div id="welcome-screen">
         <form id="name-form">
           <div className="form-group">
-            <label for="username">Type your name: </label>
+            <label htmlFor="username">Type your name: </label>
             <input
-            value={userName}
-            onChange={(e) => {setUserName(e.target.value)}}
+            value={name}
+            onChange={(e) =>{onNameChange(e.target.value)}}
             className="form-control"
             type="text"
             id="username"
             name="username"
-            required placeholder="Enter Name Here..." minLength="2"
+            required placeholder="Enter Name Here..."
+            minLength="2"
             maxLength="15" />
           </div>
-          <button className="btn btn-primary" id="start-game-button" type="button" >
+          <button className="btn btn-primary" id="start-game-button" type="button" onClick={startButtonClick}>
             Start Game!
           </button>
         </form>
@@ -32,5 +35,11 @@ const WelcomeView = (userName,setUserName, onGameStart) => {
     );
   };
 
+  WelcomeView.prototype = {
+    name: PropTypes.string.isRequired,
+    onNameChange: PropTypes.func.isRequired,
+    onGameStart: PropTypes.func.isRequired,
+  };
+
 export default WelcomeView;
-  
+
