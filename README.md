@@ -13,7 +13,7 @@ Instructions to this assignment can be found [here](https://it3049c.github.io/as
 <!--- Check the Rubric on Canvas for a guideline --->
 
 I should get **(18)** out of 20 on this assignment.
-I would like use one day late credit 
+I would like to use one-day late credit 
 
 ## Self-Reflection:
 - **How long it took me to finish this?**
