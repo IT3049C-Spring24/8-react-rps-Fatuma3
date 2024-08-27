@@ -1,14 +1,31 @@
-import './App.css'
-import Button from './components/Button'
+import './App.css';
+import React, { useState } from 'react';
+import GameView from './components/GameView';
+import WelcomeView from './components/WelcomeView';
+
 
 function App() {
+
+
+  const [name, setUserName] = useState("Fatuma");
+  const [gameStarted, setGameStarted] = useState(false);  
+
   return (
     <>
-      <h1>RPS in React</h1>
-      <Button /> {/* This line here is just to show you how a component can be nested here*/}
-      {/* Add the Rest of your React Components here */}
-    </>
-  )
+    <div className="container">
+      <h1 className="mainHeader">Rock Paper Scissors</h1>
+    </div>
+
+    { 
+      gameStarted
+      ? <GameView name={name}/>
+      : <WelcomeView 
+          name={name} 
+          onNameChange={setUserName}
+          onGameStart={() => setGameStarted(true)} />
+    }
+  </>
+  );
 }
 
-export default App
+export default App;
